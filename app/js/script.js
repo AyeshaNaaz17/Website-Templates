@@ -205,3 +205,128 @@ $(document).ready(function() {
     });
 });
 
+const chatRows = document.querySelectorAll('.chat-row');
+const chatWindow = document.querySelector('.chat-window');
+const chatMessages = document.querySelector('.chat');
+// Event listeners for chat rows
+chatRows.forEach((row) => {
+    row.addEventListener('click', () => {
+      // Remove active class from all chat rows
+        chatRows.forEach((row) => {
+        row.classList.remove('active');
+    });
+
+      // Add active class to the clicked chat row
+    row.classList.add('active');
+ 
+      // Update chat header with the selected user's information
+    const profilePic = row.querySelector('.profile-pic').src;
+    const username = row.querySelector('h4').textContent;
+    const chatHeader = document.querySelector('.chat-header');
+    chatHeader.innerHTML = `
+        <img src="${profilePic}" class="profile-pic">
+        <h4>${username}</h4>
+    `;
+
+      // Clear chat messages
+    chatMessages.innerHTML = '';
+    });
+});
+
+
+// Event listener for send button
+const sendButton = document.querySelector('.send');
+sendButton.addEventListener('click', () => {
+const textarea = document.querySelector('textarea');
+const message = textarea.value.trim();
+if (message !== '') {
+    // Get the current active chat user
+    const activeChatRow = document.querySelector('.chat-row.active');
+    const activeUsername = activeChatRow.querySelector('h4').textContent;
+
+    // Create new chat message element
+    const chatMessage = document.createElement('div');
+    chatMessage.classList.add('message');
+    chatMessage.textContent = message;
+
+    // Add CSS class based on the user
+    chatMessage.classList.add(activeUsername.toLowerCase().replace(/\s/g, '-'));
+
+    // Append the new chat message to the chat messages container
+    chatMessages.appendChild(chatMessage);
+
+    // Scroll to the bottom of the chat messages
+    chatMessages.scrollTop = chatMessages.scrollHeight;
+
+    // Clear the textarea
+    textarea.value = '';
+}
+});
+
+
+// Event listener for attachment button
+const attachmentButton = document.querySelector('.attachment-btn');
+const attachmentOptions = document.querySelector('.attachment-options');
+attachmentButton.addEventListener('click', () => {
+attachmentOptions.classList.toggle('active');
+});
+
+// Previous messages
+const previousMessages = [
+    { user: 'User 1', message: 'Hello there!', time: '10:00 AM' },
+    { user: 'User 2', message: 'Hi! How are you?', time: '10:05 AM' },
+    { user: 'User 1', message: 'I\'m doing great, thanks!', time: '10:10 AM' }
+];
+
+ // Function to display previous messages
+function displayPreviousMessages() {
+    const previousMessages = [
+    { user: 'User 1', message: 'Hello there!', time: '10:00 AM' },
+    { user: 'User 2', message: 'Hi! How are you?', time: '10:05 AM' },
+    { user: 'User 1', message: 'I\'m doing great, thanks!', time: '10:10 AM' }
+    ];
+
+    const chatMessages = document.querySelector('.chat-messages');
+
+    previousMessages.forEach((msg) => {
+    const { user, message, time } = msg;
+
+      // Create new chat message element
+    const chatMessage = document.createElement('div');
+    chatMessage.classList.add('message');
+
+      // Add CSS class based on the user
+    chatMessage.classList.add(user.toLowerCase().replace(/\s/g, '-'));
+
+      // Add CSS class for message alignment
+    if (user === 'User 1') {
+        chatMessage.classList.add('left');
+    } else {
+        chatMessage.classList.add('right');
+    }
+
+      // Create message text element if message is present
+    if (message) {
+        const messageText = document.createElement('span');
+        messageText.classList.add('message-text');
+        messageText.textContent = `${user}: ${message} (${time})`;
+
+        // Append the message text to the chat message
+        chatMessage.appendChild(messageText);
+    }
+
+      // Append the new chat message to the chat messages container
+    chatMessages.appendChild(chatMessage);
+    });
+}
+
+  // Call the function to display previous messages
+displayPreviousMessages();
+
+  // Call the function to display previous messages
+displayPreviousMessages();
+
+
+
+
+

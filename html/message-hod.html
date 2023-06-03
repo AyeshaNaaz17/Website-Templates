@@ -80,43 +80,56 @@
     </div>
 </nav>
 
-<div class="profile-container">
-    <div class="container">
-        <div class="row">
-            <div class="text-center">
-                <img src="/images/profile-image-1.jpg" alt="Profile Image" class="rounded-circle" style="width: 150px; height: 150px;">
-                <h1>User Name</h1>
-            </div>
-            <hr>
-                <div class="mb-3">
-                    <a href="#" class="btn btn-secondary">
-                        <i class="fa fa-envelope"></i> Message
-                    </a>
-                </div>
-            </div>
-            <hr>
-            <div class="profile-about">
-                <h3>About Me</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed lacus id arcu fringilla interdum sed sit amet
-                diam.</p>
-            </div>
-                <h2>Social Links</h2>
-                <ul class="list-inline">
-                    <li class="list-inline-item">
-                        <a href="#" class="btn btn-info">Facebook</a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#" class="btn btn-info">Twitter</a>
-                    </li>
-                    <li class="list-inline-item">
-                        <a href="#" class="btn btn-info">Instagram</a>
-                    </li>
-                </ul>
-            </div>
+<div class="container">
+    <div class="row">
+    <div class="col-md-4 chat-list">
+        <div class="chat-row active">
+        <img src="user1-profile.jpg" class="profile-pic">
+        <div class="chat-info">
+            <h4>User 1</h4>
+            <p>Last message sent by User 1</p>
         </div>
+        </div>
+        <div class="chat-row">
+        <img src="user2-profile.jpg" class="profile-pic">
+        <div class="chat-info">
+            <h4>User 2</h4>
+            <p>Last message sent by User 2</p>
+        </div>
+        </div>
+        <!-- Add more chat rows here -->
+    </div>
+    <div class="col-md-8 chat-window">
+        <div class="chat-header">
+        <img src="user1-profile.jpg" class="profile-pic">
+        <h4>User 1</h4>
+        </div>
+        <div class="chat-messages">
+        <!-- Chat messages will be dynamically added here -->
+        </div>
+        <script>
+            displayPreviousMessages();
+        </script>
+
+
+<div class="chat-input">
+    <textarea placeholder="Type your message"></textarea>
+    <div class="attachments">
+    <button class="btn attachment-btn">Attachment</button>
+    <div class="attachment-options">
+        <button class="btn">Attach a file</button>
+        <button class="btn">Attach an image</button>
+    </div>
+    </div>
+    <button class="btn send">Send</button>
+</div>
+
+
+    </div>
     </div>
 </div>
 
+<script src="/app/js/script.js"></script>
 
 </body>
 </html>
